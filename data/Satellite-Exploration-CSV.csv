@@ -1,4 +1,4 @@
-﻿Name,NORAD ID,Source,Launch Site
+﻿name,satid,source,launchsite
 HYSIS,43719,India,SRIHARIKOTA (SRI)
 GAOFEN-5,43461,People's Republic of China,"Taiyaun Space Center, China (TSC)"
 NUSAT 5,43204,Argentina,"Jiuquan Satellite Launch Center, China (JSC)"
