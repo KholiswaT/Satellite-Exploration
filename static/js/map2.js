@@ -18,7 +18,7 @@ var myMap = L.map("map", {
   // Store API in newly created variable
 var satellite = "/app.geojson";
 
-//  Call variable and retrieve magnitude data
+//  Call variable and retrieve satellite data
 d3.json(satellite, function(data) {
 
    
