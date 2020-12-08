@@ -51,45 +51,31 @@ d3.json("/satlaunch90.json").then((data) => {
       From_2010toNow++;
     }
   }
-  console.log('Satellites before 1970:' + Before_1970)
-  console.log('Satellites between 1970 and 1980:' + From_1970to1980)
-  console.log('Satellites between 1980 and 1990:' + From_1980to1990)
-  console.log('Satellites between 1990 and 2000:' + From_1990to2000)
-  console.log('Satellites between 2000 and 2010:' + From_2000to2010)
-  console.log('Satellites after 2010:' + From_2010toNow)
+  console.log('Launches before 1970:' + Before_1970)
+  console.log('Sat launches 1970 - 1980:' + From_1970to1980)
+  console.log('Sat launches 1980 - 1990:' + From_1980to1990)
+  console.log('Sat launches 1990 - 2000:' + From_1990to2000)
+  console.log('Sat launches 2000 - 2010:' + From_2000to2010)
+  console.log('Sat Launches after 2010:' + From_2010toNow)
 
-// var count = 0;
-// for(var i = 0; i < Before_1970.length; ++i){
-//     if(Before_1970 <= 1970)
-//         count++;
-//     console.log(count)
-  })
+})
 
-//     //   var trace1 = {
-    //     type: "scatter",
-    //     mode: "lines",
-    //     name: name,
-    //     x: launchDate,
-    //     y: satname,
-    //     line: {
-    //       color: "#17BECF"
-    //     }
-    //   };
-  
-    //   var data = [trace1];
-  
-    //   var layout = {
-    //     title: `${satellites} date launched`,
-    //     xaxis: {
-    //       range: [],
-    //       type: "date"
-    //     },
-    //     yaxis: {
-    //       autorange: true,
-    //       type: "linear"
-    //     }
-    //   };
-  
-    //   Plotly.newPlot("plot", data, layout);
-    // }}
-  
+   var trace1 = {
+     x: ["before 1970", "1970 - 1980", "1980 - 1990","1990 - 2000",
+     "2000 - 2010", "after 2010"],
+     y: [228, 314, 476, 744, 458, 671],
+     type: "bar"
+   };
+   
+   var data = [trace1];
+
+   var layout = {
+     title: "Number of Satellite Launches by Decade",
+     xaxis: { title: "Date Range"},
+     
+     yaxis: {range: [2, 800],
+   
+      title: "Number of Launches"}
+   };
+
+   Plotly.newPlot("plot", data, layout);
