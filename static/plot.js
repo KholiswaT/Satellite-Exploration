@@ -18,7 +18,7 @@
 
 //var tecPlates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 
-var newYorkCoords = [-115.814, 32.7488333];
+var newYorkCoords = [ 32.7488333,-115.814];
 var mapZoomLevel = 8;
 
 var myMap = L.map("mapid", {

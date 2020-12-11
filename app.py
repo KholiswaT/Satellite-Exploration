@@ -1,11 +1,6 @@
 from flask import Flask, render_template, redirect
-<<<<<<< HEAD
 from flask_pymongo import PyMongo
 from sql_keys import username, password
-=======
-# from flask_pymongo import PyMongo
-# import scrap_mars_data
->>>>>>> fe55d87ad4166a834a54ad094cf92b549ff75822
 from sqlalchemy import create_engine
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
@@ -14,26 +9,15 @@ import csv
 import datetime, time
 import requests
 from scipy import stats
-<<<<<<< HEAD
-=======
-from sql_keys import username, password 
->>>>>>> fe55d87ad4166a834a54ad094cf92b549ff75822
 
 # Create an instance of Flask
 app = Flask(__name__)
 
-<<<<<<< HEAD
 # Use PyMongo to establish Mongo connection
 #mongo = PyMongo(app, uri="mongodb://localhost:27017/web_scrapping_challenge_db")
 
 #rds_connection_string = "postgres:bootcamp@localhost:5432/satellite"
 #<insert password>@localhost:5432/customer_db"
-=======
-
-
-# rds_connection_string = "postgres:@localhost:5432/satellite"
-# engine = create_engine(f'postgresql://{rds_connection_string}')
->>>>>>> fe55d87ad4166a834a54ad094cf92b549ff75822
 engine = create_engine(f'postgresql://{username}:{password}@localhost:5432/satellite')
 
 # Route to render index.html template using data from Mongo
@@ -60,13 +44,9 @@ def home():
             init_page="initpage", sat_ids=sat_ids, sat_names=sat_names)
 
 
-<<<<<<< HEAD
 #
 #@app.route("/api/v1.0/<startdt>/<enddt>")
 #def startEndDate(startdt, enddt):
-=======
-
->>>>>>> fe55d87ad4166a834a54ad094cf92b549ff75822
 
 # Route to render index.html template using data from Mongo
 @app.route("/getSatellite/<cntry>/<numSat>")
@@ -409,7 +389,3 @@ def cluster():
 
 if __name__ == "__main__":
     app.run(debug=True)
-<<<<<<< HEAD
-=======
-    
->>>>>>> fe55d87ad4166a834a54ad094cf92b549ff75822
