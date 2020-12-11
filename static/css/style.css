@@ -1,0 +1,31 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+
+.h6 {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: Arial;  
+  color: black;
+}
+
+.greenblue {
+  background: darkcyan;  
+
+ 
+}
+.purple {
+  background: rebeccapurple;
+}
+
+.red {
+  background: indianred;
+}
