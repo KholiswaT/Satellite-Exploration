@@ -1,0 +1,53 @@
+.box {
+  min-height: 50px;
+  padding: 5px;
+  margin: 5px;
+  font-weight: lighter;
+  color: darkcyan;
+  font-size: 12px;
+}
+
+.skyblue {
+  background: darkcyan;
+}
+.box h3 {
+  font-size: 14px;  
+  font-weight: thick;
+  font-style: Arial;
+  color: black;
+}
+
+.box h6 {
+  font-size: 14px;  
+  font-weight: thick;
+  font-style: Arial;
+  color: black;
+}
+
+h5 {
+  font-size: 26px;
+  font-weight: normal;
+  font-style: Arial;  
+  color: black;
+}
+
+.h6 {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: Arial;  
+  color: black;
+}
+
+.greenblue {
+  background: darkcyan;  
+
+ 
+}
+.purple {
+  background: rebeccapurple;
+}
+
+.red {
+  background: indianred;
+}
+

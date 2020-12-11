@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--Navbar Bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+        
+        #globe {
+
+            height: 100%;
+            width: 100%;
+            margin: 10;
+            padding: 0;
+
+                        }
+    </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
+   <a class="navbar navbar-brand a"  href="/">Satellite Positions</a>
+
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+ 
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item active">
+         
+       </li>
+       <li class="nav-item">
+         
+       </li>
+       <li class="nav-item dropdown">
+         
+       </li>
+       <li class="nav-item">
+         
+       </li>
+     </ul>
+  
+     <ul class="navbar-nav nav justify-content-end">
+       <li class="nav-item">
+
+         <strong>
+          <a class= "nav-link" href="/indexplots">90 Degree Radius </a> 
+       </strong>
+
+       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Earth Resource Satellites
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class= "dropdown-item" href= "/minimapindex">Current Orbit </a>
+            <a class= "dropdown-item" href="/satglobe">Current Orbit Globe</a>
+            <a class= "dropdown-item" href="/cluster">Launch Sites</a>
+        </div>
+    </li>           
+     </ul>
+   </div>
+ </nav>  
+  <!-- Content -->
+  <hr>
+    <h2 ALIGN=Center >
+      <b>
+Position in Orbit </b>
+</h2>
+<br>
+<h4>Description:</h4>
+    <p>This globe includes the dataset of 147 satellites that are currently in orbit under the Earth Resource category. Here you are able to see the plotted points on a 3-D image with a clearer view of the positions of the satellites.
+</p>
+
+    <div id="globe"></div>
+
+
+<!-- ThreeJS  -->
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://s3-eu-west-2.amazonaws.com/bckld/lab/loading.js"></script>
+
+    <!-- d3 JS -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- Local JS -->
+
+    <script src="/static/js/satGlobe.js"></script>
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    
+</body>
+</html>
+
+
+
