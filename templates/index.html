@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
-
-  <title>Satellite Positions</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Satellite Positions</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -20,277 +13,304 @@
         <!--<link rel="stylesheet" href="style.css"> -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script type="text/javascript" src="{{url_for('static', filename='config.js') }}"></script>
-
-  <style type="text/css">
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-    #mapid {
-      height: 1500px;
-    }
-
-    /* Optional: Makes the sample page fill the window. */
-    html,
-    body {
-      height: 1500px;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-  <!-- Leaflet JavaScript -->
-  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-  crossorigin=""></script>  
-  <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
-  <!-- Our JavaScript -->
-  <script type="text/javascript" src="{{url_for('static', filename='config.js') }}"></script>
-<!--
-  <script type="text/javascript" src="{{url_for('static', filename='/plot.js') }}"></script>
--->
-  <script>
-
-    var responsedata = '{{ responsedata | tojson | safe }}';
-
-
-    var newYorkCoords = [10.70584066, 8.04186267];
-var mapZoomLevel = 3;
-var geojson;
-
-//d3.json(geoData, creaetMarkers);
-var satelite = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-tileSize: 512,
-maxZoom: 18,
-zoomOffset: -1,
-id: "mapbox/streets-v11",
-accessToken: API_KEY
-});
-var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-  attribution: "© <a href=\“https://www.openstreetmap.org/\“>OpenStreetMap</a> contributors, <a href=\“https://creativecommons.org/licenses/by-sa/2.0/\“>CC-BY-SA</a>, Imagery © <a href=\“https://www.mapbox.com/\“>Mapbox</a>",
-  maxZoom: 18,
-  id: "dark-v10",
-  accessToken: API_KEY
-});
-//.addTo(myMap);
-// Streetmap Layer
-
-//satelite.addTo(myMap);
-
-cl="green"
-  opac=0.9
-  var stateMarkers = [];
-  var geocode = JSON.parse(responsedata);
-  var greenIcon = L.icon({
-    iconUrl: '/static/satellite.png',
+ 
+        <!--
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key="+G_KEY+"&callback=initMap&libraries=&v=weekly"
+          defer
+        ></script>
+        <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=&libraries=drawing&callback=initMap">
+    </script>
+    -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG4ZPeUTuLAa5d7gvoerMwk8qqlKDidBE&callback=initMap&libraries=&v=weekly"defer>
+  </script>
+        <style type="text/css">
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #map {
+            height: 100%;
+          }
     
-    iconSize:     [38, 50], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-  for (var i=1; i<geocode['respdata'].length; i++) {
-    console.log("This is within the for condition");
-    console.log(geocode['respdata'][i]);
-    console.log(geocode['respdata'][i]['longitude']);
-   
-    stateMarkers.push(
-      L.marker([geocode['respdata'][i]['latitude'],geocode['respdata'][i]['longitude']], {
-        icon: greenIcon
-      }).bindPopup("<strong><h5> satName:"+geocode['respdata'][i]['satname']+"</h5>"+
+          /* Optional: Makes the sample page fill the window. */
+          html,
+          body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        </style>
+        <script>
+            //[-115.814, 32.7488333];
+          function initMap() {
+            const myLatLng = { lat: 32.7488333, lng: -115.814 };
+            
+        const  img_loc = '/static/satellite.png';
+        const image = {
+          url: img_loc,
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(20, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32),
+        };
+            const map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 3,
+              center: myLatLng,
+            });
+            new google.maps.Marker({
+              position: myLatLng,
+              map,
+              icon: img_loc,
+              title: "This is Marker to Initialize",
+            });
+    
+       
+        var init_page = '{{ init_page  }}';
+        var sat_selid = '{{ sat_sel_id }}';
+
+        console.log(sat_selid)
+        if (init_page === 'notinitpage') {
+          var  responsedata = '{{ responsedata | tojson | safe }}';
+        var geocode = JSON.parse(responsedata);
+        var indata = {};
+    
+        for (var i=1; i<geocode['respdata'].length; i++) {
+            indata = {};
+            indata['lat'] = geocode['respdata'][i]['latitude'];
+            indata['lng'] = geocode['respdata'][i]['longitude'];
+            const infotext = "<h5> satName:"+geocode['respdata'][i]['satname']+"</h5>"+
                         "<h5> satId:  "+geocode['respdata'][i]['satid']+"</h5>"+
                         "<h5> latitude:  "+geocode['respdata'][i]['latitude']+"</h5>"+
                         "<h5> longitude:  "+geocode['respdata'][i]['longitude']+"</h5>"+
                         "<h5> altitude:  "+geocode['respdata'][i]['altitude']+"</h5>"+
                         "<h5> elevation: "+geocode['respdata'][i]['elevation']+"</h5>"+
                         "<h5> azimuth:  "+geocode['respdata'][i]['azimuth']+"</h5>"+
-                        "<h5> datetime:  "+geocode['respdata'][i]['datetime']+"</h5><strong>"));
-/*
-      L.marker([geocode['respdata'][i]['latitude'],geocode['respdata'][i]['longitude']], {
-        icon: greenIcon
-      }).bindPopup("<h3> latitude:" + geocode['respdata'][i]['latitude'] + "</h3> <br> <h3>longitude: " + geocode['respdata'][i]['longitude'] + "</h3><br>")
-             */                
-                  
-}
+                        "<h5> datetime:  "+geocode['respdata'][i]['datetime']+"</h5>";
+        const marker = new google.maps.Marker({
+          position: indata,
+          map,
+          icon: img_loc,
+          title: geocode['respdata'][i]['satname']
+        });
+        const infowindow = new google.maps.InfoWindow({
+              content: infotext
+            });
+        marker.addListener("click", () => {
+              infowindow.open(map, marker);
+            });
+        }
+      }
+          
+          }
+        
+        </script>
 
-//console.log(stateMarkers);
-var states = L.layerGroup(stateMarkers);
-
-
-
-console.log(API_KEY);
-
-
-// Create a baseMaps object
-
-var baseMaps = {
-  "Satellite Map": satelite,
-  "GrayScale Map": lightmap
-
-};
-
-// Create an overlay object
-var overlayMaps = {
-  "Earth Satellite Map": states
-};
-
-
-  </script>
-   
-</head>
-<body>
+      </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class= "navbar-brand" href="/">Satellites</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
   
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <strong class="greenblue"> 
-   <a class="navbar navbar-brand a"  href="/">Satellite Positions</a>
- </strong>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="navbar-toggler-icon"></span>
-   </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class ="navbar-nav mr-auto">
+              <li class="nav-item active">
+                   </li>
+              
+              <li class="nav-item">
+                <a class= "nav-link" href="/indexplots">90 Degree Radius </a> 
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Earth Resource Satellites
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class= "dropdown-item" href= "/minimapindex">Current Orbit </a>
+                      <a class= "dropdown-item" href="/satGlobe">Current Orbit Globe</a>
+                      <a class= "dropdown-item" href="/cluster">Launch Sites</a>
+                  </div>
+              </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
  
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
-     <ul class="navbar-nav mr-auto">
-       <li class="nav-item active">
-         
-       </li>
-       <li class="nav-item">
-         
-       </li>
-       <li class="nav-item dropdown">
-         
-       </li>
-       <li class="nav-item">
-         
-       </li>
-     </ul>
-     <ul class="navbar-nav nav justify-content-end">
-      <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Earth Resource Satellites
-       </a>
-       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-         <a class= "dropdown-item" href= "/minimapindex">Current Orbit </a>
-           <a class= "dropdown-item" href="/satglobe">Current Orbit Globe</a>
-           <a class= "dropdown-item" href="/cluster">Launch Sites</a>
-       </div>
-   </li>  
-   <li class="nav-item">
+
+  <hr>
+    <h2 ALIGN=Center >
+      <b>
+        <div class="col-lg-2" style="padding: 10px;"></div>
+        Real Time Satellites 
+</b>
+<br>
+<div class="col-lg-6" style="padding: 10px;"></div>
+<h4>Description:</h4>
+    <p>There are many satellites in orbit, each falling into a specific category and launched by different countries. On this map there is a drop-down to choose a country to see the current satellites they have in orbit. The dropdown adjacent to the country name is the amount of satellites you would like the page to return
+</p>
+<p> The satellites can also be searched by their NORAD ID or its name. </p>
+      <!-- First of two columns -->
+ <table>
+   <tr>
+     <td>><strong>
+      Select the country: (Number of satellites from drop down) 
+    </strong>
+     </td>
+     <td>
     <strong>
-     <a class= "nav-link" href="/indexplots">90 Degree Radius </a> 
-  </strong>
-  </li>         
-    </ul>
-  </div>
-</nav> 
-    <!-- First of two columns -->
-<table>
- <tr>
-   <td>><strong>
-    Select the country: (Number of satellites from drop down) 
-  </strong>
-   </td>
-   <td>
-  <strong>
-    Satellite Ids  
-  </strong>
-  </td>
-  <td>
-  <strong>
-    Satellite Names
-  </strong>
-  </td>
- </tr>
- <tr>
-   <td>
-    <select id="selDatasetCnt" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/'
-            +document.getElementById('numSatellite').value">
-      {% for cnt in country %}
-      {% if cnt.country_code == sel_cnt %}
-      <option value={{ cnt.country_code  }} selected >{{ cnt.country  }}</option>
-      {% else %}
-      <option value={{ cnt.country_code  }}>{{ cnt.country  }}</option>
-      {% endif %}
-      {% endfor %}
+      Satellite Ids  
+    </strong>
+    </td>
+    <td>
+    <strong>
+      Satellite Names
+    </strong>
+    </td>
+   </tr>
+   <tr>
+     <td>
+      <select id="selDatasetCnt" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/'
+              +document.getElementById('numSatellite').value">
+        {% for cnt in country %}
+        {% if cnt.country_code == sel_cnt %}
+        <option value={{ cnt.country_code  }} selected >{{ cnt.country  }}</option>
+        {% else %}
+        <option value={{ cnt.country_code  }}>{{ cnt.country  }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <select id="numSatellite" >
+      <option value=10>10</option>
+      <option value=25>25</option>
+      <option value=100>100</option>
+      <option value=200>200</option>   
+      <option value=500>500</option>               
   </select>
-  <select id="numSatellite" >
-    <option value=10>10</option>
-    <option value=25>25</option>
-    <option value=100>100</option>
-    <option value=200>200</option>   
-    <option value=500>500</option>               
-</select>
-   </td>
-   <td>
-    <select id="selDatasetids" onchange="location = '/getSatelliteById/'+this.options[this.selectedIndex].value+'/10';">
+     </td>
+     <td>
+      <select id="selDatasetids" onchange="location = '/getSatelliteById/'+this.options[this.selectedIndex].value+'/10';">
+        {% for sat_id in sat_ids %}
+        {% if sat_id.satellite_id == sat_sel_id %}
+        <option value={{ sat_id.satellite_id  }} selected >{{ sat_id.satellite_id }}</option>
+        {% else %}
+        <option value={{ sat_id.satellite_id  }}  >{{ sat_id.satellite_id }}</option>        
+        {% endif %}
+        {% endfor %}
+    </select>
+    </td>
+    <td>
+      <select id="selDatasetnames" onchange="location = '/getSatelliteByName/'+this.options[this.selectedIndex].text+'/10';">
+        {% for satellite_name in sat_names %}
+        {% if satellite_name.satellite_name == sel_name %}
+        <option value={{ satellite_name.satellite_name  }} selected >{{ satellite_name.satellite_name }}</option>
+        {% else %}
+        <option value={{ satellite_name.satellite_name  }}>{{ satellite_name.satellite_name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    </td>
+   </tr>
+ </table>
+ <!--
+        <h5>Select the country: (Number of satellites from drop down)         Satellite ID       Satellite Name</h5>
+        <select id="selDatasetCnt" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/10';">
+          {% for cnt in country %}
+          <option value={{ cnt.country_code  }}>{{ cnt.country  }}</option>
+          {% endfor %}
+      </select>
+      <select id="numSatellite" >
+        <option value=25>10</option>
+        <option value=25>25</option>
+        <option value=25>100</option>
+        <option value=25>200</option>                
+    </select>
+    <select id="selDatasetids" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/10';">
       {% for sat_id in sat_ids %}
-      {% if sat_id.satellite_id == sat_sel_id %}
-      <option value={{ sat_id.satellite_id  }} selected >{{ sat_id.satellite_id }}</option>
-      {% else %}
-      <option value={{ sat_id.satellite_id  }}  >{{ sat_id.satellite_id }}</option>        
-      {% endif %}
+      <option value={{ sat_id.satellite_id  }}>{{ sat_id.satellite_id }}</option>
       {% endfor %}
   </select>
-  </td>
-  <td>
-    <select id="selDatasetnames" onchange="location = '/getSatelliteByName/'+this.options[this.selectedIndex].text+'/10';">
-      {% for satellite_name in sat_names %}
-      {% if satellite_name.satellite_name == sel_name %}
-      <option value={{ satellite_name.satellite_name  }} selected >{{ satellite_name.satellite_name }}</option>
-      {% else %}
-      <option value={{ satellite_name.satellite_name  }}>{{ satellite_name.satellite_name }}</option>
-      {% endif %}
-      {% endfor %}
-  </select>
-  </td>
- </tr>
-</table>
-    <div id="mapid"></div>
+  <select id="selDatasetnames" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/10';">
+    {% for satellite_name in satellite_names %}
+    <option value={{ satellite_name.satellite_name  }}>{{ satellite_name.satellite_name }}</option>
+    {% endfor %}
+</select>
+-->
 
-    <script>
-      var myMap = L.map("mapid", {
-  center: [ -43, 120],
-  zoom: mapZoomLevel
-  });
-  satelite.addTo(myMap);
-  states.addTo(myMap);
-  L.control.layers(baseMaps, overlayMaps, {
-  collapsed: false
-  }).addTo(myMap);   
+             <!--
+               <h5>Select the category:</h5>
+        <select id="selDatasetCat" onchange="optionCatChanged(this.value)">
+          {% for cate in category %}
+          <option value={{ cate.category  }}>{{ cate.category  }}</option>
+          {% endfor %}
+      </select>
+               <div class="col-md-12">
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+
+
+        <ul style="list-style: none;">
+          {% for cnt in country %}
+          var selOpt = inputElement.append("option");
+          selOpt.attr("value",inputnameData[j]);
+          selOpt.text(inputnameData[j]);
+            console.log(inputnameData[j]);
+            <li>{{ team.fruit }}: {{ team.cost  }} and revenue {{ team.revenue  }} </li>
+          {% endfor %}
+        </ul>
+        <ul style="list-style: none;">
+          {% for team in teams %}
+            <li>{{ team.player }}: {{ team.position }}</li>
+          {% endfor %}
+        </ul>
+        </div>
+        -->    
   
-  </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-    
-    <!-- D3 JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- Leaflet JavaScript -->
-    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-   
-    <!-- API key -->
-    <script type="text/javascript" src="/static/config.js"></script> 
-   <!-- Our JavaScript -->
-   <script src="/static/js/plots.js"></script>
-    <!-- D3 JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> 
-   <!-- Our JavaScript -->
-    <script type="text/javascript" src="/static/js/sat90map.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-       crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-       crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-       crossorigin="anonymous"></script>
   
+  <div id="map"></div>
+
+  <!-- D3 JavaScript
+    <div id="map"></div>
+  
+  </script> -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  
+  <!-- D3 JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  git 
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+ 
+  <!-- API key -->
+  <script type="text/javascript" src="/static/config.js"></script> 
+ <!-- Our JavaScript -->
+ <script src="/static/js/plots.js"></script>
+  <!-- D3 JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> 
+ <!-- Our JavaScript -->
+  <script type="text/javascript" src="/static/js/sat90map.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+     crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+     crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+     crossorigin="anonymous"></script>
+
+
+ 
+<!--
+  <script type="text/javascript" src="{{url_for('static', filename='config.js') }}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='/plot.js') }}"></script>
+-->
 </body>
+
 </html>
-
-
-
