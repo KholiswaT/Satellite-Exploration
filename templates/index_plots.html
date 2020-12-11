@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--Navbar Bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <!--<link rel="stylesheet" href="style.css"> -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+    <title>Bar Chart</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+</head>
+<body>
+     
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <a class="navbar navbar-brand a"  href="/">Satellite Positions</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+   
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+       <ul class="navbar-nav mr-auto">
+         <li class="nav-item active">
+           
+         </li>
+         <li class="nav-item">
+           
+         </li>
+         <li class="nav-item dropdown">
+           
+         </li>
+         <li class="nav-item">
+           
+         </li>
+       </ul>
+    
+       <ul class="navbar-nav nav justify-content-end">
+         <li class="nav-item">
+           <strong>
+            <a class= "nav-link" href="/indexplots">90 Degree Radius </a> 
+         </strong>
+         </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Earth Resource Satellites
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class= "dropdown-item" href= "/minimapindex">Current Orbit </a>
+              <a class= "dropdown-item" href="/satGlobe">Current Orbit Globe</a>
+              <a class= "dropdown-item" href="/cluster">Launch Sites</a>
+          </div>
+      </li>           
+       </ul>
+     </div>
+   </nav>  
+    <!-- Content -->
+  <!-- Content -->
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12 jumbotron text-center" style = "background-image: linear-gradient(lightcoral, orange,yellow)">
+            <h1>Satellites within 90°</h1>
+          </div>
+    <hr>
+    </div>
+    <div class="chart-container"></div>
+      <div id="plot"></div>
+    <aside>
+      <h4>Description:</h4>
+      <p>This bar chart represents more than 2,800 satellites that are still in orbit today, they are grouped by the year the were launched. Created to get a better understanding for the sheer amount of satellites in the sky and the timeline of their orbit life-span. 
+        The number of satellites in this graph represent satellite within 90 degrees of the visible sky over head.</p>
+      </aside>
+    <hr>
+    </div>
+    <div class="chart-container"></div>
+      <div id="map"><div></div>
+    </div>
+    <aside>
+      <div class="col-lg-1" style="padding: 30px;"></div>
+      <h4>Description:</h4>
+      <p>Think, the 90 degrees of sky overhead. This map has its own json file for data representation. The markers on this map have different radius sizes, which represents the altitude of that specific satellite, the larger the radius the higher the satellite is in orbit. </p>
+      <hr>
+    </aside>
+   
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  
+ <!-- D3 JavaScript -->
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+ <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ 
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ <!-- Leaflet JavaScript -->
+ <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+
+ <!-- API key -->
+ <script type="text/javascript" src="/static/config.js"></script> 
+<!-- Our JavaScript -->
+<script src="/static/js/plots.js"></script>
+ <!-- D3 JavaScript -->
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> 
+<!-- Our JavaScript -->
+ <script type="text/javascript" src="/static/js/sat90map.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Mission to Mars</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--<link rel="stylesheet" href="style.css"> -->
+        <meta charset="UTF-8">  
+      </head>
+  <body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <span class="border"><h1>Mission to Mars</h1></span>
+      <p><a class="btn btn-primary btn-lg" href="/" role="button">To the main page</a></p>
+    </div>
+    <div class="row">
+    
+      <!-- First of two columns -->
+      <div class="col-md-12">
+        <div class="text-center">
+          
+          <h5> Mars Hemispheres</h5>
+          <figure class="figure border border-primary">
+            <img src="{{ hemisImg[0].img_src }}" class="figure-img img-fluid rounded" alt="marsimg1" height="250px" width="250px">
+            <figcaption class="figure-caption">{{ hemisImg[0].title }}.</figcaption>
+          </figure>
+          <figure class="figure border border-primary">
+            <img src="{{ hemisImg[1].img_src }}" class="figure-img img-fluid rounded" alt="marsimg1" height="250px" width="250px">
+            <figcaption class="figure-caption">{{ hemisImg[1].title }}</figcaption>
+          </figure><br>
+          <figure class="figure border border-primary">
+            <img src="{{ hemisImg[2].img_src }}" class="figure-img img-fluid rounded" alt="marsimg1" height="250px" width="250px">
+            <figcaption class="figure-caption">{{ hemisImg[2].title }}</figcaption>
+          </figure>
+          <figure class="figure border border-primary">
+            <img src="{{ hemisImg[3].img_src }}" class="figure-img img-fluid rounded" alt="marsimg1" height="250px" width="250px">
+            <figcaption class="figure-caption">{{ hemisImg[3].title }}</figcaption>
+          </figure>
+          <!--
+           <img class="rounded" src="{{ hemisImg[0].img_src }}" alt="marsimg1" >
+          <img class="rounded" src="{{ hemisImg[1].img_src }}" alt="marsimg2" >
+          <img class="rounded" src="{{ hemisImg[2].img_src }}" alt="marsimg3" >
+          <img class="rounded" src="{{ hemisImg[3].img_src }}" alt="marsimg4" >
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+</body>
+
+</html>

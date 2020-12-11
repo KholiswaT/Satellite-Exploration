@@ -1,7 +1,7 @@
 
 // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument  
-d3.json("/satlaunch90.json").then((data) => {
+d3.json("/static/data/satlaunch90.json").then((data) => {
   //console.log(data)
   
   let Before_1970 = 0;
@@ -10,44 +10,33 @@ d3.json("/satlaunch90.json").then((data) => {
   let From_1990to2000 =0;
   let From_2000to2010 =0;
   let From_2010toNow=0;
-  // var Before_1970 = []
-  // var From_1970to1980=[]
-  // var From_1980to1990= []
-  // var From_1990to2000= []
-  // var From_2000to2010= []
-  // var From_2010toNow= []
+
   for (let i = 0; i < data[0].above.length; i++) {
    
-  // for (var i = 0; i < data[0].above.length; i++){
-  //     console.log(data[0].above[i]);
+
     years = [data[0].above[i].launchDate]
       //console.log(years)
       
   var years2 = years[0].slice(0,4)
     //console.log(years2)
     if (years2 <= "1970"){
-      //Before_1970.push(years2)
+
       Before_1970++;
       }
     else if(years2 <= "1980"){
-      //From_1970to1980.push(years2)
       From_1970to1980++;
     }
     else if(years2 <= "1990"){
-      //From_1980to1990.push(years2)
       From_1980to1990++;
       
     }
     else if(years2 <= "2000"){
-      //From_1990to2000.push(years2)
       From_1990to2000++;
     }
     else if(years2 <= "2010"){
-     // From_2000to2010.push(years2)
       From_2000to2010++;
     }
     else {
-      //From_2010toNow.push(years2)
       From_2010toNow++;
     }
   }
