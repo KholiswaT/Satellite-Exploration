@@ -9,6 +9,7 @@ __pycache__/
 *$py.class
 config.py
 sql_keys.py
+api_key.py
 
 
 # C extensions
