@@ -1,7 +1,15 @@
 # Byte-compiled / optimized / DLL files
+
+config.js
+config.py
+sql_keys.py
+
 __pycache__/
 *.py[cod]
 *$py.class
+config.py
+sql_keys.py
+
 
 # C extensions
 *.so
@@ -109,7 +117,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-sql_keys.py
+config.js
 
 # Spyder project settings
 .spyderproject

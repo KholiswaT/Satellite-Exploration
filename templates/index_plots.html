@@ -10,7 +10,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <!--<link rel="stylesheet" href="style.css"> -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 
@@ -25,6 +24,7 @@
      
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
       
      <a class="navbar navbar-brand a"  href="/">Satellite Positions</a>
  
@@ -67,12 +67,13 @@
       </li>           
        </ul>
      </div>
+     
    </nav>  
     
   <!-- Content -->
   <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center" style = "background-image: linear-gradient(lightcoral, orange,yellow)">
+    <div class="row" >
+      <div class="col-md-12 jumbotron text-center"  style = "background-image : linear-gradient(to bottom, #003399 0%, #ff0066 100%)">
         <h1>Satellites within 90°</h1>
       </div>
 <hr>
@@ -80,7 +81,7 @@
 <div class="chart-container"></div>
   <div id="plot"></div>
 <aside>
-  <h4>Description:</h4>
+  <!-- <h4>Description:</h4> -->
   <p>This bar chart represents more than 2,800 satellites that are still in orbit today, they are grouped by the year the were launched. Created to get a better understanding for the sheer amount of satellites in the sky and the timeline of their orbit life-span. 
     The number of satellites in this graph represent satellite within 90 degrees of the visible sky over head.</p>
   </aside>
@@ -90,8 +91,8 @@
   <div id="map"><div></div>
 </div>
 <aside>
-  <h4>Description:</h4>
-  <p>Think, the 90 degrees of sky overhead. This map has its own json file for data representation. The markers on this map have different radius sizes, which represents the altitude of that specific satellite, the larger the radius the higher the satellite is in orbit. </p>
+  <!-- <h4>Description:</h4> -->
+  <p>Think, within the 90 degrees radius of sky overhead, hundreds of satellites are currently in orbit.  The markers on this map have different radius sizes, which represents the altitude of that specific satellite, the larger the radius the higher the satellite is in orbit. </p>
   <hr>
 </aside>
    

@@ -10,19 +10,9 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <!--<link rel="stylesheet" href="style.css"> -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script type="text/javascript" src="{{url_for('static', filename='config.js') }}"></script>
  
-        <!--
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key="+G_KEY+"&callback=initMap&libraries=&v=weekly"
-          defer
-        ></script>
-        <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=&libraries=drawing&callback=initMap">
-    </script>
-    -->
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG4ZPeUTuLAa5d7gvoerMwk8qqlKDidBE&callback=initMap&libraries=&v=weekly"defer>
   </script>
@@ -42,7 +32,6 @@
           }
         </style>
         <script>
-            //[-115.814, 32.7488333];
           function initMap() {
             const myLatLng = { lat: 32.7488333, lng: -115.814 };
             
@@ -130,11 +119,12 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class= "dropdown-item" href= "/minimapindex">Current Orbit </a>
-                      <a class= "dropdown-item" href="/satGlobe">Current Orbit Globe</a>
+                      <a class= "dropdown-item" href="/satglobe">Current Orbit Globe</a>
                       <a class= "dropdown-item" href="/cluster">Launch Sites</a>
                   </div>
               </li>
         </ul>
+      
       </div>
     </nav>
     <!-- Content -->
@@ -214,66 +204,13 @@
     </td>
    </tr>
  </table>
- <!--
-        <h5>Select the country: (Number of satellites from drop down)         Satellite ID       Satellite Name</h5>
-        <select id="selDatasetCnt" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/10';">
-          {% for cnt in country %}
-          <option value={{ cnt.country_code  }}>{{ cnt.country  }}</option>
-          {% endfor %}
-      </select>
-      <select id="numSatellite" >
-        <option value=25>10</option>
-        <option value=25>25</option>
-        <option value=25>100</option>
-        <option value=25>200</option>                
-    </select>
-    <select id="selDatasetids" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/10';">
-      {% for sat_id in sat_ids %}
-      <option value={{ sat_id.satellite_id  }}>{{ sat_id.satellite_id }}</option>
-      {% endfor %}
-  </select>
-  <select id="selDatasetnames" onchange="location = '/getSatellite/'+this.options[this.selectedIndex].value+'/10';">
-    {% for satellite_name in satellite_names %}
-    <option value={{ satellite_name.satellite_name  }}>{{ satellite_name.satellite_name }}</option>
-    {% endfor %}
-</select>
--->
 
-             <!--
-               <h5>Select the category:</h5>
-        <select id="selDatasetCat" onchange="optionCatChanged(this.value)">
-          {% for cate in category %}
-          <option value={{ cate.category  }}>{{ cate.category  }}</option>
-          {% endfor %}
-      </select>
-               <div class="col-md-12">
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-
-
-        <ul style="list-style: none;">
-          {% for cnt in country %}
-          var selOpt = inputElement.append("option");
-          selOpt.attr("value",inputnameData[j]);
-          selOpt.text(inputnameData[j]);
-            console.log(inputnameData[j]);
-            <li>{{ team.fruit }}: {{ team.cost  }} and revenue {{ team.revenue  }} </li>
-          {% endfor %}
-        </ul>
-        <ul style="list-style: none;">
-          {% for team in teams %}
-            <li>{{ team.player }}: {{ team.position }}</li>
-          {% endfor %}
-        </ul>
-        </div>
-        -->    
-  
   
   <div id="map"></div>
 
-  <!-- D3 JavaScript
-    <div id="map"></div>
+  <!-- D3 JavaScript -->
   
-  </script> -->
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
   
@@ -307,10 +244,6 @@
 
 
  
-<!--
-  <script type="text/javascript" src="{{url_for('static', filename='config.js') }}"></script>
-     <script type="text/javascript" src="{{url_for('static', filename='/plot.js') }}"></script>
--->
 </body>
 
 </html>

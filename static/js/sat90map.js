@@ -19,6 +19,7 @@ var layers = {
 var myMap = L.map("map", {
     center: [40.54055668158878, -104.35709913347607],
     zoom: 2,
+    minZoom:2,
     layers: [
         layers.Under_10K,
         layers.From_10Kto50K,

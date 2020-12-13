@@ -20,8 +20,8 @@ var basemap = base;
 // Create map & boundaries
 var myMap = L.map("map", {
   center: [20, 0],
-  zoom: 2
-  // minZoom: 2
+  zoom: 2,
+  minZoom: 2
 })
     .addLayer(basemap);
 
